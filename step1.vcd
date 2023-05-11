@@ -1,5 +1,5 @@
 $date
-	Thu May 11 02:33:02 2023
+	Thu May 11 12:21:19 2023
 $end
 $version
 	Icarus Verilog
@@ -15,24 +15,25 @@ $var reg 1 $ rst $end
 $scope module u0 $end
 $var wire 1 # clk $end
 $var wire 1 $ rst $end
+$var wire 1 " i2c_scl $end
 $var reg 7 % addr [6:0] $end
 $var reg 8 & count [7:0] $end
 $var reg 8 ' data [7:0] $end
-$var reg 1 " i2c_scl $end
+$var reg 1 ( i2c_scl_enable $end
 $var reg 1 ! i2c_sda $end
-$var reg 8 ( state [7:0] $end
+$var reg 8 ) state [7:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx (
+bx )
+0(
 bx '
 bx &
 bx %
 1$
 0#
-x"
+1"
 x!
 $end
-#5

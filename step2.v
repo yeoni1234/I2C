@@ -1,11 +1,8 @@
 module step2(
-
-    input wire clk,
-    input wire rst,
-    output reg i2c_sda,
-    output wire i2c_scl
-
-
+    input   wire    clk,
+    input   wire    rst,
+    output  reg     i2c_sda,
+    output  wire    i2c_scl
 );
 
 //goal to write to device adderss 0x50, 0xaa
@@ -103,16 +100,39 @@ assign i2c_scl = (i2c_scl_enable == 0) ? 1 : ~clk;
 
     end
 
+
+    /* For Debug FSM State */
+    reg [127 : 0] DEBUG_STATE;
+
+    always @(*) begin
+        case(state)
+            STATE_IDLE  : DEBUG_STATE = "IDLE";
+            STATE_START : DEBUG_STATE = "START";
+            STATE_ADDR  : DEBUG_STATE = "ADDR";
+            STATE_RW    : DEBUG_STATE = "RW";
+            STATE_WACK  : DEBUG_STATE = "WACK";
+            STATE_DATA  : DEBUG_STATE = "DATA";
+            STATE_STOP  : DEBUG_STATE = "STOP";
+            STATE_WACK2 : DEBUG_STATE = "WACK2";
+        endcase
+    end
+
+
+
 endmodule
 
 module tb;
 
-    reg clk;
-    reg rst;
-    wire i2c_sda;
-    wire i2c_scl;
+    reg     clk;
+    reg     rst;
+    wire    i2c_sda;
+    wire    i2c_scl;
 
-    step2 u0(.clk(clk), .rst(rst), .i2c_sda(i2c_sda), .i2c_scl(i2c_scl));
+    step2 u0(   .clk(clk), 
+                .rst(rst), 
+                .i2c_sda(i2c_sda), 
+                .i2c_scl(i2c_scl)
+    );
     
     // initial begin
     //     i2c_scl = 0;
@@ -123,21 +143,26 @@ module tb;
     
     initial begin
         clk = 0;
-        #5 forever clk = ~clk;
-
+        forever #5 clk = ~clk;
     end
 
-    initial begin
+    
+      initial begin
         rst = 1;
         #10
         rst = 0;
-        #5
-        rst = 1;
-        $finish;
+        
+        // $finish;
     end
 
     initial begin
-        $dumpfile("step1.vcd");
+        #5000
+        $finish;
+
+    end
+
+    initial begin
+        $dumpfile("step2.vcd");
         $dumpvars;
 
     end
