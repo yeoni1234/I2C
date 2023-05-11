@@ -260,7 +260,7 @@ module i2c_master_bit_ctrl
           fSCL <= {fSCL[1:0],cSCL[1]};
           fSDA <= {fSDA[1:0],cSDA[1]};
       end
-
+    
 
     // generate filtered SCL and SDA signals
     always @(posedge clk or negedge nReset)
