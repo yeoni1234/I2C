@@ -26,6 +26,8 @@ reg [7:0] count;
 reg [7:0] data;
 reg i2c_scl_enable = 0;
 
+// hehehe
+
 assign i2c_scl = (i2c_scl_enable == 0) ? 1 : ~clk;
 
     always @(negedge clk) begin // i2c가 low일 때 data가 들어오도록 하기 위해 negedge로 변경
