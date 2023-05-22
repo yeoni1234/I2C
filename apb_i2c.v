@@ -8,7 +8,7 @@
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations under the License.
 
-`include "i2c_master_defines.sv"
+`include "i2c_master_defines.v"
 
 `define REG_CLK_PRESCALER 3'b000 //BASEADDR+0x00
 `define REG_CTRL          3'b001 //BASEADDR+0x04

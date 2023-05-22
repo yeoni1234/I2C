@@ -66,7 +66,7 @@
 //               Added headers.
 //
 
-`include "i2c_master_defines.sv"
+`include "i2c_master_defines.v"
 
 `define I2C_CMD_NOP   4'b0000
 `define I2C_CMD_START 4'b0001
@@ -148,24 +148,24 @@ module i2c_master_byte_ctrl (
 	//
 
 	// hookup bit_controller
-	i2c_master_bit_ctrl bit_controller (
-		.clk     ( clk      ),
-		.nReset  ( nReset   ),
-		.ena     ( ena      ),
-		.clk_cnt ( clk_cnt  ),
-		.cmd     ( core_cmd ),
-		.cmd_ack ( core_ack ),
-		.busy    ( i2c_busy ),
-		.al      ( i2c_al   ),
-		.din     ( core_txd ),
-		.dout    ( core_rxd ),
-		.scl_i   ( scl_i    ),
-		.scl_o   ( scl_o    ),
-		.scl_oen ( scl_oen  ),
-		.sda_i   ( sda_i    ),
-		.sda_o   ( sda_o    ),
-		.sda_oen ( sda_oen  )
-	);
+	// i2c_master_byte byte_controller (
+	// 	.clk     ( clk      ),
+	// 	.nReset  ( nReset   ),
+	// 	.ena     ( ena      ),
+	// 	.clk_cnt ( clk_cnt  ),
+	// 	.cmd     ( core_cmd ),
+	// 	.cmd_ack ( core_ack ),
+	// 	.busy    ( i2c_busy ),
+	// 	.al      ( i2c_al   ),
+	// 	.din     ( core_txd ),
+	// 	.dout    ( core_rxd ),
+	// 	.scl_i   ( scl_i    ),
+	// 	.scl_o   ( scl_o    ),
+	// 	.scl_oen ( scl_oen  ),
+	// 	.sda_i   ( sda_i    ),
+	// 	.sda_o   ( sda_o    ),
+	// 	.sda_oen ( sda_oen  )
+	// );
 
 	// generate go-signal
 	assign go = (read | write | stop) & ~cmd_ack;
